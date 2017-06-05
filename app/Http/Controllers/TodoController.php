@@ -16,7 +16,36 @@ class TodoController extends Controller
 
     public function create()
     {
-      return view('todo.create', compact('todos'));
+      return view('todo.create');
     }
 
+    public function store(Request $request)
+    {
+      Todo::create( $request->all() );
+                //'title'=>$request->title,
+                //'url'=>$request->url,
+                //'description'=>$request->description
+
+      return redirect('todo');
+    }
+      public function edit(Todo $todo)
+      {
+        return view('todo.edit', compact('todo'));
+      }
+      public function update(Request $request, $id)
+      {
+        $todo = Todo::find($id);
+        $todo->update( $request->all() );
+        return redirect('todo');
+
+      }
+      public function destroy($id)
+      {
+        $todo = Todo::find($id);
+        $todo->delete();
+
+        return redirect('todo');
+
+
+      }
 }

@@ -22,8 +22,13 @@
                   <td>{{ $todo->url }}</td>
                   <td>{{ $todo->description }}</td>
                   <td>
+                    <form method="post" action="/todo/{{ $todo->id }}">
+                      <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                      <input name="_method" type="hidden" value="DELETE">
+
                       <a href="todo/{{ $todo->id }}/edit" type="text" class="btn btn-xs btn-default">Edit</a>
-                      <a href="#" type="text" class="btn btn-xs btn-danger">Delete</a>
+                      <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                    </form>
                   </td>
               </tr>
                 @endforeach
