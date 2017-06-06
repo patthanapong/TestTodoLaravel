@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+
   <div class="container">
 
           <h1>Todo</h1>
@@ -12,6 +14,8 @@
                 <th>Title</th>
                 <th>Url</th>
                 <th>Description</th>
+                <th>Status</th>
+                <th>Control</th>
                 <th>Actions</th>
               </tr>
 
@@ -21,13 +25,21 @@
                   <td>{{ $todo->title }}</td>
                   <td>{{ $todo->url }}</td>
                   <td>{{ $todo->description }}</td>
+                  <td>@if ($todo->status=='0')
+                    <button type="submit" class="btn  btn-success">open</button>
+                  @else
+                    <button type="submit" class="btn  btn-danger">close</button>
+                  @endif</td>
+                  <td>
+                      <button type="submit" class="btn  btn-success">open</button>
+                  </td>
                   <td>
                     <form method="post" action="/todo/{{ $todo->id }}">
                       <input name="_token" type="hidden" value="{{ csrf_token() }}">
                       <input name="_method" type="hidden" value="DELETE">
 
-                      <a href="todo/{{ $todo->id }}/edit" type="text" class="btn btn-xs btn-default">Edit</a>
-                      <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                      <a href="todo/{{ $todo->id }}/edit" type="text" class="btn btn-warning">Edit</a>
+                      <button type="submit" class="btn  btn-danger">Delete</button>
                     </form>
                   </td>
               </tr>

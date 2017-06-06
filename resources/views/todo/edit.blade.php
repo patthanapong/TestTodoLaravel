@@ -20,7 +20,7 @@
             </div>
 
 
-            <button type="submit" class="btn btn-primary">Eddit</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
           </form>
   </div>
 @endsection

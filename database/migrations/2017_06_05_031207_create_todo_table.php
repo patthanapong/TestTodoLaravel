@@ -18,6 +18,7 @@ class CreateTodoTable extends Migration
           $table->string('title');
           $table->string('url');
           $table->text('description');
+          $table->integer('status')->default('0');
           $table->timestamps();
       });
     }
@@ -27,8 +28,8 @@ class CreateTodoTable extends Migration
      *
      * @return void
      */
-    public function todos()
+    public function down()
     {
-        //
+        Schema::dropIfExists('todos');
     }
 }
