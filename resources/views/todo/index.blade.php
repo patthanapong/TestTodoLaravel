@@ -25,14 +25,31 @@
                   <td>{{ $todo->title }}</td>
                   <td>{{ $todo->url }}</td>
                   <td>{{ $todo->description }}</td>
-                  <td>@if ($todo->status=='0')
-                    <button type="submit" class="btn  btn-success">open</button>
-                  @else
-                    <button type="submit" class="btn  btn-danger">close</button>
-                  @endif</td>
                   <td>
-                      <button type="submit" class="btn  btn-success">open</button>
+                    @if ($todo->status == '0')
+                        close to website
+                    @else
+                        open to website
+                    @endif
                   </td>
+
+                    <td>
+                    {{--<a href="todo/{{ $todo->id }}" type="text" class="btn btn-warning">Edit</a>--}}
+
+                      <form action="/todo/{{ $todo->id }}/up" method="post">
+                        {{ csrf_field() }}
+                        <input name="_method" type="hidden" value="DELETE">
+                        @if ($todo->status == '0')
+                          <button type="submit" class="btn  btn-success">open</button>
+                        @else
+                          <button type="submit" class="btn  btn-danger">close</button>
+                        @endif
+
+                      </form>
+
+
+                  </td>
+
                   <td>
                     <form method="post" action="/todo/{{ $todo->id }}">
                       <input name="_token" type="hidden" value="{{ csrf_token() }}">

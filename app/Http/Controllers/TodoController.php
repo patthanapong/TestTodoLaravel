@@ -45,7 +45,18 @@ class TodoController extends Controller
         $todo->delete();
 
         return redirect('todo');
+      }
 
+      public function status($id)
+      {
+        $todo = Todo::find($id);
+        if ($todo->status =='0') {
+          $todo->update(['status'=> '1']);
+        }else{
+          $todo->update(['status'=> '0']);
+        }
+        return redirect('todo');
 
       }
+
 }
