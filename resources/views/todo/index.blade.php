@@ -14,9 +14,11 @@
                 <th>Title</th>
                 <th>Url</th>
                 <th>Description</th>
+                <th>Time</th>
                 <th>Status</th>
                 <th>Control</th>
                 <th>Actions</th>
+                <th>Show</th>
               </tr>
 
               @foreach($todos as $todo)
@@ -25,6 +27,7 @@
                   <td>{{ $todo->title }}</td>
                   <td>{{ $todo->url }}</td>
                   <td>{{ $todo->description }}</td>
+                  <td>{{ $todo->date }}</td>
                   <td>
                     @if ($todo->status == '0')
                         close to website
@@ -59,9 +62,44 @@
                       <button type="submit" class="btn  btn-danger">Delete</button>
                     </form>
                   </td>
+
+                  <td>
+                    <!-- Large modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target=".bs-example-modal-lg">Show</button>
+                        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                        aria-labelledby="myLargeModalLabel">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                        </div>
+                          <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                              ID : {{ $todo->id }}<br>
+                              TITLE : {{ $todo->title }}<br>
+                              URL : {{ $todo->url }}<br>
+                              DESCRIPTION : {{ $todo->description }}<br>
+                              STATUS : @if ($todo->status == '0')
+                                  close to website
+                              @else
+                                  open to website
+                              @endif
+                            </div>
+                              <div class="modal-footer">
+                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                           </div>
+                          </div>
+                        </div>
+                  </td>
+
+
               </tr>
-                @endforeach
+  @endforeach
             </table>
+
             {{ $todos->links() }}  {{-- ใส่ link ไปหน้าอื่นข้างล่างตาราง --}}
   </div>
+
 @endsection
+{{--<link rel="javascript" type="text/javascript" href="datetime.js">--}}
