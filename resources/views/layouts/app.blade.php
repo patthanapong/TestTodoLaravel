@@ -9,9 +9,23 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
+    <link rel="stylesheet" media="all" type="text/css" href="{{asset('date/jquery-ui.css')}}" />
+    <link rel="stylesheet" media="all" type="text/css" href="{{asset('date/jquery-ui-timepicker-addon.css')}}" />
+
+    <script src="{{asset('date/jquery-1.10.2.min.js')}}"></script>
+    <script  src="{{asset('date/jquery-ui.min.js')}}"></script>
+
+    <script  src="{{asset('date/jquery-ui-timepicker-addon.js')}}"></script>
+    <script  src="{{asset('date/jquery-ui-sliderAccess.js')}}"></script>
+
+
+
 </head>
 <body>
     <div id="app">
@@ -75,6 +89,6 @@
     </div>
 
     <!-- Scripts -->
-  <!--  <script src="{{ asset('js/app.js') }}"></script>-->
+
 </body>
 </html>

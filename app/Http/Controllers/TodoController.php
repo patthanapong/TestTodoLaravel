@@ -21,7 +21,13 @@ class TodoController extends Controller
 
     public function store(Request $request)
     {
-      Todo::create( $request->all() );
+      Todo::create([
+            'title' => $request->title,
+            'url' => $request->url,
+            'description' => $request->description,
+            'date' => $request->date,
+            'user_id' => auth()->user()->id
+      ]);
                 //'title'=>$request->title,
                 //'url'=>$request->url,
                 //'description'=>$request->description
@@ -35,7 +41,12 @@ class TodoController extends Controller
       public function update(Request $request, $id)
       {
         $todo = Todo::find($id);
-        $todo->update( $request->all() );
+        $todo->update([
+          'title' => $request->title,
+          'url' => $request->url,
+          'description' => $request->description,
+          'date' => $request->date,
+          'user_id' => auth()->user()->id ]);
         return redirect('todo');
 
       }

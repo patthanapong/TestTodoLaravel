@@ -11,6 +11,7 @@
             <table class="table table-bordered">
               <tr>
                 <th>Id</th>
+                <th>Name</th>
                 <th>Title</th>
                 <th>Url</th>
                 <th>Description</th>
@@ -18,12 +19,13 @@
                 <th>Status</th>
                 <th>Control</th>
                 <th>Actions</th>
-                <th>Show</th>
+
               </tr>
 
               @foreach($todos as $todo)
                 <tr>
                   <td>{{ $todo->id }}</td>
+                  <td>{{ $todo->user->name }}</td>
                   <td>{{ $todo->title }}</td>
                   <td>{{ $todo->url }}</td>
                   <td>{{ $todo->description }}</td>
@@ -34,23 +36,6 @@
                     @else
                         open to website
                     @endif
-                  </td>
-
-                    <td>
-                    {{--<a href="todo/{{ $todo->id }}" type="text" class="btn btn-warning">Edit</a>--}}
-
-                      <form action="/todo/{{ $todo->id }}/up" method="post">
-                        {{ csrf_field() }}
-                        <input name="_method" type="hidden" value="DELETE">
-                        @if ($todo->status == '0')
-                          <button type="submit" class="btn  btn-success">open</button>
-                        @else
-                          <button type="submit" class="btn  btn-danger">close</button>
-                        @endif
-
-                      </form>
-
-
                   </td>
 
                   <td>
@@ -100,6 +85,6 @@
 
             {{ $todos->links() }}  {{-- ใส่ link ไปหน้าอื่นข้างล่างตาราง --}}
   </div>
-
+    
 @endsection
 {{--<link rel="javascript" type="text/javascript" href="datetime.js">--}}
